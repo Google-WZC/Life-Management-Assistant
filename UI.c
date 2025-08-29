@@ -16,10 +16,13 @@ char UI_choose(struct database *lgPtr)
     printf("2. 查看所有条目\n");
     printf("3. 关联账本文件(未开发)\n");
     printf("4. 保存到账本文件\n");
+    printf("5. 替换账本已存在的条目\n");
+    printf("6. 删除账本末尾条目(不支持删除指定条目)\n");
+    printf("7. 保存并退出\n");
     printf("0. 不保存退出\n");
     char c = ' ';
     scanf(" %c", &c);
-    while (c != '1' && c != '2' && c != '3' && c != '4' && c != '0')
+    while (c != '1' && c != '2' && c != '3' && c != '4' && c != '5' && c != '6' &&  c != '7' && c != '0')
     {
         printf("无效选项，请重新输入：\n");
         scanf(" %c", &c);
@@ -28,8 +31,7 @@ char UI_choose(struct database *lgPtr)
     {
     case '1':
         printf("添加条目\n");
-        write_entry(lgPtr);
-        fullfill_entry(lgPtr);
+        add_entry(lgPtr);
         return '1';
     case '2':
         printf("查看所有条目(press Q to quit)\n");
@@ -39,14 +41,27 @@ char UI_choose(struct database *lgPtr)
         return '2';
     case '3':
         printf("关联账本文件\n");
-
+        associate_database(lgPtr);
         return '3';
     case '4':
         printf("保存到账本文件\n");
         restore_database(lgPtr);
         return '4';
+    case '5':
+        printf("替换账本已存在的条目\n");
+        subtitute_existing_entry(lgPtr);
+        return '5';
+    case '6':
+        printf("删除账本末尾条目(不支持删除指定条目)\n");
+        delete_last_entry(lgPtr);
+        return '6';
+    case '7':
+        //保存退出
+        restore_database(lgPtr);
+        fclose(lgPtr->fp);
+        return '0'; // exit code
     case '0':
-        printf("不保存退出\n");
+        //不保存退出
         fclose(lgPtr->fp);
         return '0'; // exit code
     default:
