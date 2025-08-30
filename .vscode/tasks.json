@@ -1,0 +1,39 @@
+{//for make(compile), so the function is the same to Makefile, but native to vscode text editor.
+// This is a immature template, you should modify it according to your situation.such as:
+/**			"args": [
+				"-fdiagnostics-color=always",
+				"-g",
+				"Ledger.c LedgerFunc.c UI.c", //or global(*.c)
+				"-o",
+				"${fileDirname}/${fileBasenameNoExtension}"
+			],
+*/
+// The compile way: press F1, and Tasks:Run Task
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "cppbuild",
+			"label": "C/C++: g++-13 生成活动文件",
+			"command": "/usr/bin/g++-13",
+			"args": [
+				"-fdiagnostics-color=always",
+				"-g",
+				"${file}",// $file is a dynamic variable, it means current file cursor puts.
+				"-o",
+				"${fileDirname}/${fileBasenameNoExtension}"// $fileDirname is also a dynamic variable, it means current file cursor puts. $fileBasenameNoExtension means $file without extension.
+				//but $workspaceFolder in other .json is a static varible, it means folder opened in vscode.
+			],
+			"options": {
+				"cwd": "${fileDirname}"
+			},
+			"problemMatcher": [
+				"$gcc"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"detail": "编译器: /usr/bin/g++-13"
+		}
+	]
+}

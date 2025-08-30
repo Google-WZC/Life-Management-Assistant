@@ -1,0 +1,32 @@
+{//for gdb. It's nessary to debug C/C++ code with vscode UI.So it's irreplaceable.
+// And if you want to debug one file, you should write -g option in Makefile addtionally(not only this launch.json). Otherwise, it will ignore the breakpoints you set, and the effect is like run the executable.
+// Remember press F5, not upper right corner green triangle button button, it will debug without following this file, but default configure(program "Ledger").
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "(gdb) 启动",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/a.out",//输入程序名称，例如 ${workspaceFolder}/a.out  (${fileBasenameNoExtension}指定当前界面的文件的输出文件(Ledger))
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${fileDirname}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "为 gdb 启用整齐打印",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                },
+                {
+                    "description": "将反汇编风格设置为 Intel",
+                    "text": "-gdb-set disassembly-flavor intel",
+                    "ignoreFailures": true
+                }
+            ]
+        }
+
+    ]
+}

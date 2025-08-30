@@ -1,0 +1,17 @@
+{//base configure C_and_CPP_standard and compiler's Path, this will not assign in other configure(.json).
+// origin from https://zhuanlan.zhihu.com/p/87864677
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "${workspaceFolder}/**"
+            ],
+            "defines": [],
+            "compilerPath": "/usr/bin/g++-13",
+            "cStandard": "c23",
+            "cppStandard": "c++23",
+            "intelliSenseMode": "${default}"
+        }
+    ],
+    "version": 4
+}
